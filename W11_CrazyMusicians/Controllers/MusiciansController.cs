@@ -91,7 +91,6 @@ public class MusiciansController : Controller
         return NoContent();
     }
 
-
     [HttpPatch("update/{id:min(1)}")]
     public IActionResult PartialUpdate(int id, [FromBody] JsonPatchDocument<Musician> patchDoc)
     {
