@@ -60,14 +60,12 @@ public class MusiciansController : Controller
     }
     
     [HttpDelete("delete/{id:min(1)}")]
-    [HttpDelete("delete/{musicianName:alpha}")]
-    public IActionResult Delete(int? id, string? musicianName)
+    public IActionResult Delete(int id)
     {
-        var musician = _musicians.FirstOrDefault(m => m.Id == id || m.Name.Contains(musicianName, StringComparison.OrdinalIgnoreCase));
+        var musician = _musicians.FirstOrDefault(m => m.Id == id);
         if (musician == null)
         {
-            // returns not found if both id and musicianName are null, and shows which one was not found
-            return NotFound(id != null ? $"Musician with ID: {id} was not found." : $"Musician with name: '{musicianName}' was not found.");
+            return NotFound($"Musician with ID: {id} was not found.");
         }
         
         _musicians.Remove(musician);
@@ -91,7 +89,7 @@ public class MusiciansController : Controller
         return NoContent();
     }
 
-    [HttpPatch("update/{id:min(1)}")]
+    [HttpPatch("patch-update/{id:min(1)}")]
     public IActionResult PartialUpdate(int id, [FromBody] JsonPatchDocument<Musician> patchDoc)
     {
         var existingMusician = _musicians.FirstOrDefault(m => m.Id == id);
@@ -100,6 +98,7 @@ public class MusiciansController : Controller
             return NotFound($"Musician with ID: {id} was not found.");
         }
         
+        // it cannot change the static list musician objects created for testing purposes
         patchDoc.ApplyTo(existingMusician);
         return NoContent();
     }
