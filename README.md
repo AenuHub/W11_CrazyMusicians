@@ -1,11 +1,11 @@
 
 ## W11_Crazy Musicians
 
-This project is aiming to showcase the usage of Web API in ASP.NET Core.
+This project is aiming to showcase the usage of Web API in .NET Core.
 
 ### Project Overview
 
-Create an ASP.NET Core Web API using the funny and entertaining data table provided. The API supports basic CRUD 
+Create an .NET Core Web API using the funny and entertaining data table provided. The API supports basic CRUD 
 (Create, Read, Update, Delete) operations with the following requirements:
 
 - Implement at least **2 GET**, **1 POST**, **1 PATCH**, **1 PUT**, and **1 DELETE** endpoints.
